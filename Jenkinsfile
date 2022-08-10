@@ -19,7 +19,8 @@ pipeline {
             steps {
             script{
                 withCredentials([string(credentialsId: '24121986', variable: 'dockerhub')]) {
-                sh 'docker login -u 24121986 -p${dockerhub}'     
+                sh 'docker login -u 24121986 -p${dockerhub}'   
+                    echo "test"
                    }
                 sh "docker push 24121986/ubuntu1"
                 }
