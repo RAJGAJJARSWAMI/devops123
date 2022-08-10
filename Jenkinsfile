@@ -1,6 +1,7 @@
 pipeline {
-    agent any
+    agent any{
     customWorkspace "/project"
+    }
     
     stages{
         stage("clone the Repo") {
