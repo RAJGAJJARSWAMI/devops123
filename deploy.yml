@@ -33,7 +33,7 @@ spec:
   type: NodePort
   selector:
      app: tomcat
-  ports:
+  ports:80
    - name: http
      protocol: TCP
      port: 80
