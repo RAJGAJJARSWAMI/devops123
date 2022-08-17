@@ -33,9 +33,9 @@ pipeline {
                     /** sh "ssh ec2-user@3.84.99.249 kubectl delete -f ." */				    
                     script{
                         try{
-                            sh "ssh ec2-user@3.84.99.249 sudo kubectl apply -f ."
+                            sh "ssh ec2-user@3.84.99.249 kubectl apply -f ."
                         }catch(error){
-                            sh "ssh ec2-user@3.84.99.249 sudo kubectl create -f ."
+                            sh "ssh ec2-user@3.84.99.249 kubectl create -f ."
                         }
                         }
                     }
