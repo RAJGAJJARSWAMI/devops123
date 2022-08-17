@@ -30,7 +30,8 @@ pipeline {
 			dir ("/var/lib/jenkins/workspace/Project/assess") {
 			    sshagent(['58af5faf-0a89-4fc7-8f62-c825e50f68b5']) {
                     sh "scp -o StrictHostKeyChecking=no deploy.yml ec2-user@3.84.99.249:"
-                    sh "ssh ec2-user@3.84.99.249 kubectl delete -f ."
+                    /** sh "ssh ec2-user@3.84.99.249 kubectl delete -f ." */
+				    
                     script{
                         try{
                             sh "ssh ec2-user@3.84.99.249 kubectl apply -f ."
