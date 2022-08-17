@@ -29,19 +29,18 @@ pipeline {
 			steps {
 			dir ("/var/lib/jenkins/workspace/Project/assess") {
 			    sshagent(['58af5faf-0a89-4fc7-8f62-c825e50f68b5']) {
-                    sh "scp -o StrictHostKeyChecking=no deploy.yml ec2-user@3.84.99.249:"
-                    /** sh "ssh ec2-user@3.84.99.249 kubectl delete -f ." */
-				    
+                    sh "scp -o StrictHostKeyChecking=no deploy.yml ec2-user@3.84.99.249:/home/ec2-user"
+                    /** sh "ssh ec2-user@3.84.99.249 kubectl delete -f ." */				    
                     script{
                         try{
-                            sh "ssh ec2-user@3.84.99.249 kubectl apply -f ."
+                            sh "ssh ec2-user@3.84.99.249 sudo kubectl apply -f ."
                         }catch(error){
-                            sh "ssh ec2-user@3.84.99.249 kubectl create -f ."
+                            sh "ssh ec2-user@3.84.99.249 sudo kubectl create -f ."
                         }
                         }
                     }
                 }
-			}
+		}
         }
     }
 }
