@@ -33,7 +33,7 @@ pipeline {
                     /** sh "ssh ec2-user@54.210.180.0 kubectl delete -f ." */				    
                     script{
                         try{
-                            sh "ssh ec2-user@54.210.180.0 kubectl apply -f ."
+                            sh "ssh -o StrictHostKeyChecking=no ec2-user@54.210.180.0 kubectl apply -f ."
                         }catch(error){
                             sh "ssh ec2-user@54.210.180.0 kubectl create -f ."
                         }
