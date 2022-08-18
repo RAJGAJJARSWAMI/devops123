@@ -1,7 +1,15 @@
-FROM ubuntu:18.04
-RUN apt update && apt install git -y
-RUN apt install apache2 -y
-CMD ["/usr/sbin/apache2ctl","-D","FOREGROUND"]
-RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh
+FROM ubuntu
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update
+
+RUN apt-get install apache2 -y
+
+RUN apt-get install apache2-utils -y
+
+RUN apt-get clean
+
 EXPOSE 80
-CMD /root/run_apache.sh
+
+CMD ["apache2ctl","-D","FOREGROUND"]
