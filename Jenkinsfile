@@ -5,13 +5,13 @@ pipeline {
         stage("clone the Repo") {
             steps {
                 sh "rm -rf *"
-                sh "git clone https://github.com/parag-vyas/assess.git"
+                sh "git clone https://github.com/RAJGAJJARSWAMI/devops123.git"
                    }
             }
         stage ("Build Image") {
             steps{
                 dir("/var/lib/jenkins/workspace/Project/assess"){
-                    sh 'docker build -t 24121986/ubuntu1 .' 
+                    sh 'docker build -t rajgajjar/devops1234 .' 
                     }
                 }
             }
@@ -19,9 +19,9 @@ pipeline {
             steps {
             script{
                 withCredentials([string(credentialsId: '24121986', variable: 'dockerhub')]) {
-                sh 'docker login -u 24121986 -p${dockerhub}'   
+                sh 'docker login -u rajgajjar -p${dockerhub}'   
                    }
-                sh "docker push 24121986/ubuntu1"
+                sh "docker push rajgajjar/devops1234"
                 }
             }
         }
@@ -29,13 +29,13 @@ pipeline {
 			steps {
 			dir ("/var/lib/jenkins/workspace/Project/assess") {
 			    sshagent(['58af5faf-0a89-4fc7-8f62-c825e50f68b5']) {
-                    sh "scp -o StrictHostKeyChecking=no deploy.yml ec2-user@54.234.28.11:"
-                    /** sh "ssh ec2-user@54.234.28.11 kubectl delete -f ." */				    
+                    sh "scp -o StrictHostKeyChecking=no deploy.yml ubuntu@172.31.13.48:"
+                    /** sh "ssh  ubuntu@172.31.13.48 kubectl delete -f ." */				    
                     script{
                         try{
-                            sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.28.11 kubectl apply -f ."
+                            sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.48 kubectl apply -f ."
                         }catch(error){
-                            sh "ssh ec2-user@54.234.28.11 kubectl create -f ."
+                            sh "ssh ubuntu@172.31.13.48 kubectl create -f ."
                         }
                         }
                     }
